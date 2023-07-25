@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  let value = useSelector((x) => x.maPage.name)
+  const dispatch = useDispatch();
+
+  console.log(value)
+
+  const onChange = (e) => {
+    dispatch({ type: "NAME", payload:  e.target.value});
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input value={value} onChange={onChange}
+      />
     </div>
   );
 }
